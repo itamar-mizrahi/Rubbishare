@@ -63,6 +63,32 @@ app.delete('/plasticMaterials/:id', (req, res) => {
   }
 });
 
+
+const users = [];
+
+app.post('/api/login', (req, res) => {
+  const { username, password } = req.body;
+  const user = users.find(u => u.username === username && u.password === password);
+  if (user) {
+    res.status(200).json({ success: true });
+  } else {
+    res.status(401).json({ success: false, message: 'Invalid username or password' });
+  }
+});
+
+app.post('/api/signup', (req, res) => {
+  const { username, password, email } = req.body;
+  const userExists = users.some(u => u.username === username);
+  if (userExists) {
+    res.status(409).json({ success: false, message: 'Username already exists' });
+  } else {
+    const newUser = { username, password, email };
+    users.push(newUser);
+    res.status(201).json({ success: true });
+  }
+});
+
+
 // Start server
 app.listen(3000, () => {
   console.log('Server started on port 3000');
