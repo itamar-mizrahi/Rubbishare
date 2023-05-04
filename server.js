@@ -29,6 +29,7 @@ app.post('/plasticMaterials', (req, res) => {
     price: req.body.price,
     farmerId: req.body.farmerId
   };
+  console.log(newMaterial); 
   plasticMaterials.push(newMaterial);
   res.json(newMaterial);
 });

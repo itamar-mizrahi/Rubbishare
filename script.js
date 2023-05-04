@@ -18,7 +18,8 @@ function addMaterial(event) {
   const type = document.getElementById('type').value;
   const weight = parseFloat(document.getElementById('weight').value);
    const price = parseFloat(document.getElementById('price').value);
-  const farmerId = parseInt(document.getElementById('farmerId').value);
+  const farmerId = document.getElementById('farmerId').value;
+  debugger;
   const newMaterial = { type, weight, price, farmerId };
   fetch(apiUrl, {
     method: 'POST',
